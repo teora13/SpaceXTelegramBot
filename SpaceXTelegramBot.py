@@ -1,11 +1,13 @@
+# sends details about any SpaceX launch according send number also sends info about the latest and the next SpaceX launch
+
 import telebot
 import requests
 bot = telebot.TeleBot('token')
 
-#information about all launches
+# information about all launches
 flightAPI = 'https://api.spacexdata.com/v3/launches'
 
-#API from the latest launch
+# the latest launch from API
 lastAPI = 'https://api.spacexdata.com/v3/launches/latest'
 last_name = requests.get(lastAPI).json()['mission_name']
 last_local_time = requests.get(lastAPI).json()['launch_date_local']
@@ -13,7 +15,7 @@ last_rocket = requests.get(lastAPI).json()['rocket']['rocket_name']
 last_site = requests.get(lastAPI).json()['launch_site']['site_name_long']
 last_flight = requests.get(lastAPI).json()['flight_number']
 
-#API from the next launch
+# the next launch from API
 nextAPI = 'https://api.spacexdata.com/v3/launches/next'
 next_name = requests.get(nextAPI).json()['mission_name']
 next_local_time = requests.get(nextAPI).json()['launch_date_local']
@@ -31,16 +33,16 @@ def get_number(message):
         launch_site = requests.get(flightAPI).json()[flight_number]['launch_site']['site_name_long']
         launch_success = requests.get(flightAPI).json()[flight_number]['launch_success']
         details = requests.get(flightAPI).json()[flight_number]['details']
-# if user input any number bot sends back details about launch according this number
+# if user input any number bot sends back details about the launch according this number
         if message.text:
             bot.send_message(message.from_user.id, f'Flight number: {flight_number} \nMission name: {mission_name} \nLunch date(utc): {launch_date_utc} \nRocket: {rocket} \nLaunch site: {launch_site} \nLaunch success: {launch_success} \nDatails: {details} \n\n*{greating}*', parse_mode='Markdown')
-#if number is out of range bot sends error message with max available number (keeps in var /last_flight/)
+# if number is out of range bot sends error message with max available number (keeps in var /last_flight/)
     except IndexError:
         bot.send_message(message.from_user.id, f'Looks like your choice is out of range. Last flight is {last_flight}. Please, try again')
-#bot sends info about the latest and the next launches if input type of data is any letter/s
+# if message is not a number bot sends info about the latest and the next SpaceX launch
     except ValueError:
         bot.send_message(message.from_user.id, f'The last launch was: {last_name} \nRocket: {last_rocket} \nYour local time was: {last_local_time} \nSite: {last_site}')
         bot.send_message(message.from_user.id, f'The next launch is: {next_name} \nRocket: {next_rocket} \nYour local time will be: {next_local_time} \nSite: {next_site} \n\n*{greating}*', parse_mode='Markdown')
 
-#timeout for long polling
+# timeout for long polling
 bot.polling(none_stop=True, interval=0)
