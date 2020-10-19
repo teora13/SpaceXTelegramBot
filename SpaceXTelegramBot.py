@@ -1,4 +1,4 @@
-# sends information about SpaceX launches
+# sends details about any SpaceX launch according send number also sends info about the latest and the next SpaceX launch
 
 import telebot
 import requests
