@@ -34,7 +34,7 @@ def get_number(message):
 
 # if user input any number bot sends back details about the launch according this number
         if message.text:
-            bot.send_message(message.from_user.id, f'Flight number: {flight_number} \nMission name: {mission_name} \nLunch date(utc): {launch_date_utc} \nRocket: {rocket} \nLaunch site: {launch_site} \nLaunch success: {launch_success} \nDatails: {details} \n\n*{greating}*', parse_mode='Markdown')
+            bot.send_message(message.from_user.id, f'Flight number: {flight_number} \nMission name: {mission_name} \nLunch date(utc): {launch_date_utc} \nRocket: {rocket} \nLaunch site: {launch_site} \nLaunch success: {launch_success} \nDetails: {details} \n\n*{greating}*', parse_mode='Markdown')
 
 # if number is out of range bot sends error message with max available number (keeps in var /last_flight/)
     except IndexError:
