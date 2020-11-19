@@ -1,11 +1,11 @@
 # spacextelegrambot
-:rocket: A bot sends details about any SpaceX launch according send number
+:rocket: A bot sends details about any SpaceX launch according send number to your Telegram account
 
 Active modules:
 * telebot - official module for interaction with bot token
 * requests - for getting API requests
 
-If the user wants to receive information about a specific flight number, then in response he will receive detailed information about the launch
+Bot works with [Telegram](https://telegram.org/) messenger. If the user wants to receive information about a specific flight number, then in response he will receive detailed information about the launch
 
 ![number](https://github.com/teora13/spacextelegrambot/blob/master/screens/number.png?raw=true)
 
