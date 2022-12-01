@@ -1,5 +1,5 @@
 # spacextelegrambot
-:rocket: A bot sends details about any SpaceX launch according send number to your Telegram account
+:rocket: A bot sends details about selected SpaceX launch according its number
 
 Active modules:
 * telebot - official module for interaction with bot token
